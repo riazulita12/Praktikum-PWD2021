@@ -1,0 +1,50 @@
+//Membuat database
+CREATE DATABASE aakademik;
+
+//membuka database akademik
+USE aakademik;
+//membuat tabel
+CREATE TABLE mahasiswa(
+	-> nim varchar(5) not null primary key,
+	-> nama varchar(50),
+	-> jkel varchar(1),
+	-> alamat text,
+	-> tgllhr date
+	-> );
+
+DESC mahasiswa;
+//menambahkan data
+INSERT INTO mahasiswa VALUES ('MHS01', 'Siti Aminah', 'P', 'SOLO', '1995-10-01'),
+	-> ('MHS02', 'Rita', 'P', 'SOLO', '1999-01-01'),
+	-> ('MHS03', 'Amirudin', 'L', 'SEMARANG', '1998-08-11'),
+	-> ('MHS04', 'Siti Maryam', 'P', 'JAKARTA', '1995-04-15');
+
+//menampilkan semua data
+SELECT * FROM mahasiswa;
+SELECT * FROM mahasiswa WHERE alamat='SOLO';
+
+//menambahkan field baru
+ALTER TABLE mahasiswa ADD prodi varchar(25);
+DESC mahasiswa;
+
+//menambahkan data 
+UPDATE mahasiswa SET prodi = 'Teknik Informatika' WHERE nim='MHS01';
+UPDATE mahasiswa SET prodi = 'Teknik Informatika' WHERE nim='MHS02';
+UPDATE mahasiswa SET prodi = 'Kedokteran' WHERE nim='MHS03';
+UPDATE mahasiswa SET prodi = 'Teknik Informatika' WHERE nim='MHS04';
+SELECT * FROM mahasiswa;
+
+//untuk menampilkan nim, nama, dan prodi
+SELECT nim, nama, prodi FROM mahasiswa;
+
+//untuk menampilkan data dengan jkel=P
+SELECT * FROM mahasiswa WHERE jkel='P';
+
+//untuk menampilkan data nim, nama, dan prodi dengan prodi=Teknik Informatika
+SELECT nim, nama, prodi FROM mahasiswa WHERE prodi='Teknik Informatika';
+
+//untuk menampilkan data dengan mengurutkan alamat sesuai abjad
+SELECT * FROM mahasiswa ORDER BY alamat ASC;
+
+//untuk menampilkan 3 nim teratas
+SELECT * FROM mahasiswa ORDER BY nim ASC LIMIT 0,3;
